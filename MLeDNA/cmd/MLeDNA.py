@@ -5,7 +5,7 @@ MLeDNA: selecting combinations of eDNA metabarcoding primers
 '''
 
 __author__ = 'Tao Zhu'
-__copyright__ = 'Copyright 2022'
+__copyright__ = 'Copyright 2023'
 __license__ = 'GPL'
 __version__ = '0.1'
 __email__ = 'zhutao.bioinfo@gmail.com'
@@ -22,7 +22,7 @@ from operator import itemgetter
 from MLeDNA.core import pipeline
 
 parser = argparse.ArgumentParser(description='MLeDNA: selecting combinations of eDNA metabarcoding primers', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('amplicons', help='a four-column-amplicon table in TSV format. <Primer> <SeqID> <Species> <Seq>')
+parser.add_argument('amplicons', help='a four-column-amplicon table in TSV format. Do not use non-word characters. <Primer> <SeqID> <Species> <Seq>')
 parser.add_argument('-d', '--threshold-diff', help='minimum DNA difference required for nearest siblings', type=int, default=1)
 parser.add_argument('-p', '--primers', help='preferred primers separated by comma. eg. primer1,primer2', default='any')
 parser.add_argument('-n', '--threshold-num', help='maximum number of selected primers.', type=int, default=5)
@@ -36,6 +36,8 @@ def main():
     primer2lengthes = {}
     with open(args.amplicons) as in_handle:
         for line in in_handle:
+            if line.startswith('#'):
+                continue
             (primer_name, seqid, tax, seq) = line.strip().split('\t')
             primer_name = re.sub('[^\w]+', '_', primer_name)
             seqid = re.sub('[^\w]+', '_', seqid)
