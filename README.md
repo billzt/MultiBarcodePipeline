@@ -118,11 +118,11 @@ Multiple sequences for the same species is allowed.
 
 | Primer Name  | Sequence Name | Species Name | Sequence |
 | ------------- | ------------- | ------------- |------------- |
-| p1  | seqid_p1_1  | tax1 | `ACAAAGTTTAACCATGTTAAACAACTTATTAAAGA`
-| p1  | seqid_p1_1b  | tax1 | `ACAAAGTTTAACCATGCTAAACAACTTATTAAAGA`
-| p1  | seqid_p1_2  | tax2 | `ACCCAGTTTAACCATGCTAAACAACTTATTAAAGA`
-| p2  | seqid_p2_1  | tax1 | `CGCCTCTTGCATTCTACGTATAAGAGGTCCCGCCTG`
-| p2  | seqid_p2_2  | tax2 | `CGCCTCTTGCATTCTACGTATAAGATGTCCCGCCTG`
+| p1  | seqid_1  | tax1 | `ACAAAGTTTAACCATGTTAAACAACTTATTAAAGA`
+| p1  | seqid_1b  | tax1 | `ACAAAGTTTAACCATGCTAAACAACTTATTAAAGA`
+| p1  | seqid_2  | tax2 | `ACCCAGTTTAACCATGCTAAACAACTTATTAAAGA`
+| p2  | seqid_1  | tax1 | `CGCCTCTTGCATTCTACGTATAAGAGGTCCCGCCTG`
+| p2  | seqid_2  | tax2 | `CGCCTCTTGCATTCTACGTATAAGATGTCCCGCCTG`
 
 
 # Optional
