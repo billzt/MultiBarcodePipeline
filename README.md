@@ -116,7 +116,7 @@ a four-column-file in TSV format for amplicon sequences. Each line stands for an
 
 Multiple sequences for the same species is allowed.
 
-| Primer Name  | Sequence Name | Species Name | Sequence |
+| Primer Name  | Sequence Name | Species Name | Amplicons under this Primer |
 | ------------- | ------------- | ------------- |------------- |
 | p1  | seqid_1  | tax1 | `ACAAAGTTTAACCATGTTAAACAACTTATTAAAGA`
 | p1  | seqid_1b  | tax1 | `ACAAAGTTTAACCATGCTAAACAACTTATTAAAGA`
