@@ -6,7 +6,7 @@ The pipeline generates the most optimal single or multiple barcodes that could r
 [MAFFT](https://mafft.cbrc.jp/alignment/software/) (v7.505 or compatible)
 
 # Install
-Currently only support Linux. Please use conda to manage the environment.
+Linux OS is required. Please use conda to manage the environment. If you do not have a device running Linux OS, or you just want to have a quick look, you can try the [Docker version]()
 ```
 $ conda create -n MultiBarcode python=3.9
 $ conda activate MultiBarcode
