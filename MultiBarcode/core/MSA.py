@@ -37,7 +37,7 @@ def run(workdir:str, cpu_num: int, taxID2seq: dict, prefer_primers='any', thresh
     while True:
         complete_count = len([x for x in multi_res if x.ready()])
         all_num = len(multi_res)
-        current_message = f'Sequence alignment: {complete_count}/{all_num} primers finished'
+        current_message = f'Sequence alignment: {complete_count}/{all_num} barcodes finished'
         if debug==True:
             print(current_message, file=sys.stderr)
         if complete_count >= all_num:

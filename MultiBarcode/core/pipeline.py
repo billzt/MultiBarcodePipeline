@@ -4,7 +4,7 @@ import sys
 
 from glob import glob
 
-from MLeDNA.core import MSA, sibling, matrix
+from MultiBarcode.core import MSA, sibling, matrix
 
 def rescue_num(primer:str, uncovered_taxes:set, primer2goodtax:dict) -> int:
     taxes_for_this_primer = primer2goodtax[primer] if primer in primer2goodtax else set()

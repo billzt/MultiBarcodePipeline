@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-'''MLeDNA
-MLeDNA: selecting combinations of eDNA metabarcoding primers
+'''MultiBarcode
+MultiBarcode: selecting combinations of metabarcoding loci
 '''
 
 __author__ = 'Tao Zhu'
@@ -19,15 +19,15 @@ import json
 
 from operator import itemgetter
 
-from MLeDNA.core import pipeline
+from MultiBarcode.core import pipeline
 
-parser = argparse.ArgumentParser(description='MLeDNA: selecting combinations of eDNA metabarcoding primers', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('amplicons', help='a four-column-amplicon table in TSV format. Do not use non-word characters. <Primer> <SeqID> <Species> <Seq>')
-parser.add_argument('-d', '--threshold-diff', help='minimum DNA difference required for nearest siblings', type=int, default=1)
-parser.add_argument('-p', '--primers', help='preferred primers separated by comma. eg. primer1,primer2', default='any')
-parser.add_argument('-n', '--threshold-num', help='maximum number of selected primers.', type=int, default=5)
+parser = argparse.ArgumentParser(description='MultiBarcode: selecting combinations of metabarcoding loci', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument('amplicons', help='a four-column-amplicon table in TSV format. Do not use non-word characters. <SeqID> <Barcode> <Species> <Seq>')
+parser.add_argument('-d', '--threshold-diff', help='minimum DNA difference required for most closely related species under the same barcode', type=int, default=1)
+parser.add_argument('-p', '--prefer', help='preferred barcodes, in order, separated by comma. eg. barcode1,barcode2', default='any')
+parser.add_argument('-n', '--threshold-num', help='maximum number of selected barcodes.', type=int, default=5)
 parser.add_argument('-t', '--threads', help='number of CPUs', type=int, default=4)
-parser.add_argument('-o', '--output-dir', help='directory for output', default='MLeDNAResult')
+parser.add_argument('-o', '--output-dir', help='directory for output', default='MultiBarcodeResult')
 args = parser.parse_args()
 
 def main():
@@ -38,7 +38,7 @@ def main():
         for line in in_handle:
             if line.startswith('#'):
                 continue
-            (primer_name, seqid, tax, seq) = line.strip().split('\t')
+            (seqid, primer_name, tax, seq) = line.strip().split('\t')
             primer_name = re.sub('[^\w]+', '_', primer_name)
             seqid = re.sub('[^\w]+', '_', seqid)
             taxID = re.sub('[^\w]+', '_', tax)
@@ -62,7 +62,7 @@ def main():
     for (primer_name, lengthes) in primer2lengthes.items():
         primer2length[primer_name] = sum(lengthes)/len(lengthes)
     pipeline.run(workdir, red_species, red_species, taxID2seq, primer2length, args.threshold_diff, \
-                 args.threshold_num, args.primers, cpu_num=args.threads)
+                 args.threshold_num, args.prefer, cpu_num=args.threads)
     
     print(f'Finished', file=sys.stderr)
 
@@ -72,7 +72,7 @@ def main():
         num_taxes = len(result_data['tax_red'])
         print(f'Number of Species: {num_taxes}', file=sys.stderr)
         print(f'###########', file=sys.stderr)
-        print(f'Selected Primers', file=sys.stderr)
+        print(f'Selected Barcodes', file=sys.stderr)
         rank = 1
         for primer in result_data['selected_primers']:
             addition = 'additional' if rank > 1 else ''

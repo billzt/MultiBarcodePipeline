@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 version = 'v1.0'
 
-setup(name='MLeDNA',
+setup(name='MultiBarcode',
       version=version,
-      description="MLeDNA",
+      description="MultiBarcode",
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: Product',
           'Environment :: Console',
           'Intended Audience :: Science/Research',
           'License :: OSI Approved :: MIT License',
@@ -14,7 +14,7 @@ setup(name='MLeDNA',
           'Programming Language :: Python :: 3.6',
           'Topic :: Scientific/Engineering :: Bio-Informatics'
       ],
-      keywords='eDNA',
+      keywords='environmental DNA',
       author='Tao Zhu',
       author_email='zhutao.bioinfo@gmail.com',
       license='MIT',
@@ -24,11 +24,12 @@ setup(name='MLeDNA',
       install_requires=[
           'distance',
           'treeswift',
+          'biopython',
           'XlsxWriter'
       ],
       entry_points={
           'console_scripts': [
-            'mledna = MLeDNA.cmd.MLeDNA:main',
+            'multi-barcode = MultiBarcode.cmd.run:main',
           ]
       },
 )

@@ -56,7 +56,7 @@ def run(workdir, all_siblings_data, selected_primers, red_species, threshold_dif
                                         'format':   missing_format})
     
     worksheet = workbook.add_worksheet('List of Siblings')
-    headers = ['Primer', 'Target Species', 'Target Seq ID', 'Sibling Species', 'Sibling Seq ID', 'Distance']
+    headers = ['Barcode', 'Target Species', 'Target Seq ID', 'Most Closely Related Species', 'Seq ID in Closely Related Sp.', 'Distance']
     worksheet.set_column(0,len(headers)-1,20)
     for col in range(len(headers)):
         worksheet.write(0, col, headers[col], header_format)
