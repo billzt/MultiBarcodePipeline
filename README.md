@@ -3,9 +3,9 @@
 The pipeline generates the most optimal single or multiple barcodes that could reach the highest resolution of taxonomy identification, based on provided amplicon sequences.
 
 # Install
-Linux OS is required. Please use conda to manage the environment.
+## for Linux users
 
-## External Dependencies
+### External Dependencies
 [MAFFT](https://mafft.cbrc.jp/alignment/software/) (v7.505 or compatible). After installation, make sure the following command works with no errors.
 ```
 mafft
@@ -40,8 +40,8 @@ If unsure which option to use:
 --dash :         Add structural information (Rozewicki et al, submitted)
 ```
 
-## for macOS or Windows users
-If you do not have a device running Linux OS, (i.e., macOS or Windows users), or you just want to have a quick look, you can try the [Docker version](https://github.com/billzt/MultiBarcodePipeline/blob/main/Docker.md)
+Then you can install MultiBarcodePipeline into a new conda environment.
+
 ```
 conda create -n MultiBarcode python=3.9
 conda activate MultiBarcode
@@ -50,6 +50,10 @@ cd MultiBarcodePipeline
 python3 setup.py develop
 multi-barcode -h
 ```
+
+## for macOS or Windows users
+If you do not have a device running Linux OS, (i.e., macOS or Windows users), or you just want to have a quick look, you can try the [Docker version](https://github.com/billzt/MultiBarcodePipeline/blob/main/Docker.md)
+
 
 # Test
 ## Default
