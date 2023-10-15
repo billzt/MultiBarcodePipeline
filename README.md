@@ -8,19 +8,19 @@ The pipeline generates the most optimal single or multiple barcodes that could r
 # Install
 Linux OS is required. Please use conda to manage the environment. If you do not have a device running Linux OS, (i.e., macOS or Windows users), or you just want to have a quick look, you can try the [Docker version](https://github.com/billzt/MultiBarcodePipeline/blob/main/Docker.md)
 ```
-$ conda create -n MultiBarcode python=3.9
-$ conda activate MultiBarcode
-$ git clone https://github.com/billzt/MultiBarcodePipeline.git
-$ cd MultiBarcodePipeline
-$ python3 setup.py develop
-$ multi-barcode -h
+conda create -n MultiBarcode python=3.9
+conda activate MultiBarcode
+git clone https://github.com/billzt/MultiBarcodePipeline.git
+cd MultiBarcodePipeline
+python3 setup.py develop
+multi-barcode -h
 ```
 
 # Test
 ## Default
 ```
-$ cd test
-$ multi-barcode amplicon_fish85_primers34.tsv 
+cd test
+multi-barcode amplicon_fish85_primers34.tsv 
 ```
 The result is:
 ```
@@ -39,7 +39,7 @@ The result indicates that the `West_FishF1_COX1` barcode is best for the inputte
 
 ## Adjust the threshold of differences in amplicons
 ```
-$ multi-barcode amplicon_fish85_primers34.tsv -d 8
+multi-barcode amplicon_fish85_primers34.tsv -d 8
 ```
 The result is:
 ```
@@ -60,7 +60,7 @@ The result indicates that the `Weigt_FISHCOI` barcode is best for the inputted 8
 
 ## Use a preferred barcode
 ```
-$ multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S
+multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S
 ```
 The result is:
 ```
@@ -81,8 +81,8 @@ The result indicates that the best combination is `Miya_MiFish_U_12S + West_Fish
 
 ## Just view certain barcodes provided by users. Do not recommend new barcodes.
 ```
-$ rm -rf MultiBarcodeResult/
-$ multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S,Valentini_Teleo_12S -n 2
+rm -rf MultiBarcodeResult/
+multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S,Valentini_Teleo_12S -n 2
 ```
 The result is:
 ```
