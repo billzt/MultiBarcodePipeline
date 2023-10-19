@@ -2,25 +2,64 @@
 
 The pipeline generates the most optimal single or multiple barcodes that could reach the highest resolution of taxonomy identification, based on provided amplicon sequences.
 
-# External Dependencies
-[MAFFT](https://mafft.cbrc.jp/alignment/software/) (v7.505 or compatible)
-
 # Install
-Linux OS is required. Please use conda to manage the environment. If you do not have a device running Linux OS, or you just want to have a quick look, you can try the [Docker version](https://github.com/billzt/MultiBarcodePipeline/blob/main/Docker.md)
+## for Linux users
+
+### External Dependencies
+[MAFFT](https://mafft.cbrc.jp/alignment/software/) (v7.505 or compatible). After installation, make sure the following command works with no errors.
 ```
-$ conda create -n MultiBarcode python=3.9
-$ conda activate MultiBarcode
-$ git clone https://github.com/billzt/MultiBarcodePipeline.git
-$ cd MultiBarcodePipeline
-$ python3 setup.py develop
-$ multi-barcode -h
+mafft
 ```
+
+It should output something like this:
+```
+------------------------------------------------------------------------------
+  MAFFT v7.505 (2022/Apr/10)
+  https://mafft.cbrc.jp/alignment/software/
+  MBE 30:772-780 (2013), NAR 30:3059-3066 (2002)
+------------------------------------------------------------------------------
+High speed:
+  % mafft in > out
+  % mafft --retree 1 in > out (fast)
+
+High accuracy (for <~200 sequences x <~2,000 aa/nt):
+  % mafft --maxiterate 1000 --localpair  in > out (% linsi in > out is also ok)
+  % mafft --maxiterate 1000 --genafpair  in > out (% einsi in > out)
+  % mafft --maxiterate 1000 --globalpair in > out (% ginsi in > out)
+
+If unsure which option to use:
+  % mafft --auto in > out
+
+--op # :         Gap opening penalty, default: 1.53
+--ep # :         Offset (works like gap extension penalty), default: 0.0
+--maxiterate # : Maximum number of iterative refinement, default: 0
+--clustalout :   Output: clustal format, default: fasta
+--reorder :      Outorder: aligned, default: input order
+--quiet :        Do not report progress
+--thread # :     Number of threads (if unsure, --thread -1)
+--dash :         Add structural information (Rozewicki et al, submitted)
+```
+
+Then you can install MultiBarcodePipeline into a new conda environment.
+
+```
+conda create -n MultiBarcode python=3.9
+conda activate MultiBarcode
+git clone https://github.com/billzt/MultiBarcodePipeline.git
+cd MultiBarcodePipeline
+python3 setup.py develop
+multi-barcode -h
+```
+
+## for macOS or Windows users
+If you do not have a device running Linux OS, (i.e., macOS or Windows users), or you just want to have a quick look, you can try the [Docker version](https://github.com/billzt/MultiBarcodePipeline/blob/main/Docker.md)
+
 
 # Test
 ## Default
 ```
-$ cd test
-$ multi-barcode amplicon_fish85_primers34.tsv 
+cd test
+multi-barcode amplicon_fish85_primers34.tsv 
 ```
 The result is:
 ```
@@ -39,7 +78,7 @@ The result indicates that the `West_FishF1_COX1` barcode is best for the inputte
 
 ## Adjust the threshold of differences in amplicons
 ```
-$ multi-barcode amplicon_fish85_primers34.tsv -d 8
+multi-barcode amplicon_fish85_primers34.tsv -d 8
 ```
 The result is:
 ```
@@ -60,7 +99,7 @@ The result indicates that the `Weigt_FISHCOI` barcode is best for the inputted 8
 
 ## Use a preferred barcode
 ```
-$ multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S
+multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S
 ```
 The result is:
 ```
@@ -81,8 +120,8 @@ The result indicates that the best combination is `Miya_MiFish_U_12S + West_Fish
 
 ## Just view certain barcodes provided by users. Do not recommend new barcodes.
 ```
-$ rm -rf MultiBarcodeResult/
-$ multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S,Valentini_Teleo_12S -n 2
+rm -rf MultiBarcodeResult/
+multi-barcode amplicon_fish85_primers34.tsv -p Miya_MiFish_U_12S,Valentini_Teleo_12S -n 2
 ```
 The result is:
 ```

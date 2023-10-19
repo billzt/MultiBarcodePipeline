@@ -4,13 +4,11 @@
 
 Please refer to [Docker's manual page](https://docs.docker.com/get-docker/).
 
-## Pull the image of MiFish
+## Pull the image of MultiBarcodePipeline
 
 ```bash
 docker pull taobioinfo/multibarcodepipeline:latest
 ```
-
-Old versions are also [available](https://hub.docker.com/repository/docker/taobioinfo/multibarcodepipeline/tags), though not recommended.
 
 ## Run
 
