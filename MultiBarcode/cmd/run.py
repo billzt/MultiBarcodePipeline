@@ -55,7 +55,7 @@ def main():
     for (primer_name, lengthes) in primer2lengthes.items():
         primer2length[primer_name] = sum(lengthes)/len(lengthes)
     pipeline.run(workdir, red_species, red_species, taxID2seq, primer2length, args.threshold_diff, \
-                 args.threshold_num, args.prefer, cpu_num=args.threads)
+                 args.threshold_num, re.sub('[^\w]+', '_', args.prefer), cpu_num=args.threads)
     
     print(f'Finished', file=sys.stderr)
 

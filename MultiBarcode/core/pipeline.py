@@ -78,8 +78,11 @@ def run(workdir:str, red_species:set, other_species:set, taxID2seq:dict, primer2
         if len(remain_primers) == 0:
             break
         best_primer = max(remain_primers, key=lambda ele:(rescue_num(ele, uncovered_taxes, primer2goodtax), -primer2length[ele]))
-        new_uncovered_taxes = uncovered_taxes - primer2goodtax[best_primer]
-        primer2rescue_num[best_primer] = len(uncovered_taxes & primer2goodtax[best_primer])
+        if best_primer in primer2goodtax:
+            new_uncovered_taxes = uncovered_taxes - primer2goodtax[best_primer]
+            primer2rescue_num[best_primer] = len(uncovered_taxes & primer2goodtax[best_primer])
+        else:
+            new_uncovered_taxes = uncovered_taxes
         if uncovered_taxes == new_uncovered_taxes:
             break
         else:
