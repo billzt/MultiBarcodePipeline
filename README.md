@@ -2,6 +2,11 @@
 
 The pipeline generates the most optimal single or multiple barcodes that could reach the highest resolution of taxonomy identification, based on provided amplicon sequences.
 
+# References
+
+If you use this pipeline in your projects, please cite:
+* Zhu, T., & Iwasaki, W. (2023). MultiBarcodeTools: Easy selection of optimal primers for eDNA multi-metabarcoding. Environmental DNA, 00, 1–16. https://doi.org/10.1002/edn3.499
+
 # Install
 ## for Linux users
 
